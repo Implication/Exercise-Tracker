@@ -10,7 +10,7 @@ const CreateExercise = () => {
     const [username, setUsername] = useState((users[0] || ""));
     useEffect(() => {
         async function getUsers() {
-            let res = await axios.get('http://localhost:8000/users');
+            let res = await axios.get('http://localhost:5000/users');
             let Users = res.data.map(r => r.username);
             setUsers([...Users]);
         }

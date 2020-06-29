@@ -9,7 +9,7 @@ const ExerciseList = () => {
     const [exerciseList, setExerciseList] = useState([]);
     useEffect(() => {
         async function getExercises() {
-            let res = await axios.get('http://localhost:8000/exercises')
+            let res = await axios.get('http://localhost:5000/exercises')
             console.log(res);
             setExerciseList([...res.data]);
         }
@@ -17,7 +17,7 @@ const ExerciseList = () => {
     }, [])
 
     const handleDelete = async (id) => {
-        await axios.delete(`http://localhost:8000/exercises/${id}`)
+        await axios.delete(`http://localhost:5000/exercises/${id}`)
         console.log("Item deleted");
         window.location.reload();
     }

@@ -11,7 +11,7 @@ const CreateUser = () => {
         }
 
         console.log(user);
-        let res = await axios.post('http://localhost:8000/users/add', user)
+        let res = await axios.post('http://localhost:5000/users/add', user)
         console.log(res.data);
 
         setUsername('');

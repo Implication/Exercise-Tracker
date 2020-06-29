@@ -9,10 +9,11 @@ const EditExercise = (props) => {
     const [username, setUsername] = useState((users[0] || ""));
     useEffect(() => {
         async function getUser() {
-            let res = await axios.get('http://localhost:8000/users');
+            let base_url = window.location.origin;
+            let res = await axios.get(`${base_url}/users`);
             let Users = res.data.map(r => r.username);
             let id = props.match.params.id
-            let nextRes = await axios.get(`http://localhost:8000/exercises/${id}`)
+            let nextRes = await axios.get(`${base_url}/exercises/${id}`)
             let info = nextRes.data;
             console.log(nextRes);
             setUsers([...Users]);

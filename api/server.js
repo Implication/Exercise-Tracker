@@ -11,13 +11,15 @@ const userRouter = require('./routes/users');
 
 
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8000
 
-connetDB();
 app.use(cors());
+connetDB();
 app.use(express.json({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 app.use('/exercises', exerciseRouter);
 app.use('/users', userRouter);
+
 
 app.use(express.static(path.join(__dirname, '../build')));
 app.get('*', (req, res) => {

@@ -11,7 +11,8 @@ const CreateUser = () => {
         }
 
         console.log(user);
-        let res = await axios.post('http://localhost:8000/users/add', user)
+        let base_url = window.location.origin;
+        let res = await axios.post(`${base_url}/users/add`, user)
         console.log(res.data);
 
         setUsername('');

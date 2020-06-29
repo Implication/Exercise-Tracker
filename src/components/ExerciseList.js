@@ -4,20 +4,21 @@ import { Link } from 'react-router-dom'
 
 
 const ExerciseList = () => {
-
+    let base_url = window.location.origin;
 
     const [exerciseList, setExerciseList] = useState([]);
     useEffect(() => {
         async function getExercises() {
-            let res = await axios.get('http://localhost:8000/exercises')
-            console.log(res);
+            let res = await axios.get(`${base_url}/exercises`)
+            console.log(res.data);
             setExerciseList([...res.data]);
         }
         getExercises();
     }, [])
 
     const handleDelete = async (id) => {
-        await axios.delete(`http://localhost:8000/exercises/${id}`)
+        let base_url = window.locatio.origin;
+        await axios.delete(`${base_url}/exercises/${id}`)
         console.log("Item deleted");
         window.location.reload();
     }

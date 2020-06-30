@@ -7,10 +7,11 @@ const CreateExercise = () => {
     const [duration, setDuration] = useState(0);
     const [date, setDate] = useState(new Date());
     const [users, setUsers] = useState([])
-    const [username, setUsername] = useState((users[0] || ""));
+    const [username, setUsername] = useState("Tra123");
+    let base_url = window.location.origin;
+    console.log(username);
     useEffect(() => {
         async function getUsers() {
-            let base_url = window.location.origin;
             let res = await axios.get(`${base_url}/users`);
             let Users = res.data.map(r => r.username);
             setUsers([...Users]);
@@ -26,7 +27,6 @@ const CreateExercise = () => {
             date,
         }
         console.log(exercise);
-        let base_url = window.location.origin;
         let res = await axios.post(`${base_url}/exercises/add`, exercise);
         console.log(res);
         window.location = '/';

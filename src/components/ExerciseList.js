@@ -17,7 +17,6 @@ const ExerciseList = () => {
     }, [])
 
     const handleDelete = async (id) => {
-        let base_url = window.locatio.origin;
         await axios.delete(`${base_url}/exercises/${id}`)
         console.log("Item deleted");
         window.location.reload();
@@ -28,7 +27,7 @@ const ExerciseList = () => {
         <div>
             {exerciseList.map((exercise) => {
                 return (
-                    <div key={exercise._id} className="card">
+                    <div key={exercise._id} className="card mb-5">
                         <div className="card-header row" style={{ margin: "0px" }}>
                             <h3 className="col-6" >{exercise.description}</h3>
                             <button className="col-2 btn-outline-dark rounded mr-5 btn text-white">

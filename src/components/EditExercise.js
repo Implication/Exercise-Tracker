@@ -7,9 +7,9 @@ const EditExercise = (props) => {
     const [date, setDate] = useState(new Date());
     const [users, setUsers] = useState([])
     const [username, setUsername] = useState((users[0] || ""));
+    let base_url = window.location.origin;
     useEffect(() => {
         async function getUser() {
-            let base_url = window.location.origin;
             let res = await axios.get(`${base_url}/users`);
             let Users = res.data.map(r => r.username);
             let id = props.match.params.id

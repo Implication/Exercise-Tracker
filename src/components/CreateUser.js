@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import FlashMessage from 'react-flash-message'
 
 const CreateUser = () => {
     const [username, setUsername] = useState('');
+    const [userExists, setUserExists] = useState(false);
+    let base_url = window.location.origin;
     const handleUserSubmit = async (e) => {
         e.preventDefault();
 
@@ -11,14 +14,25 @@ const CreateUser = () => {
         }
 
         console.log(user);
-        let base_url = window.location.origin;
-        let res = await axios.post(`${base_url}/users/add`, user)
-        console.log(res.data);
+        try {
+            let res = await axios.post(`${base_url}/users/add`, user)
+            console.log("User is created");
+        } catch (err) {
+            console.error(err.message);
+            setUserExists(true);
+        }
 
         setUsername('');
     }
     return (
         <div>
+            {userExists &&
+                <FlashMessage duration={5000}>
+                    <div class="alert alert-danger" role="alert">
+                        This user already exists
+            </div>
+                </FlashMessage>
+            }
             <form onSubmit={handleUserSubmit}>
                 <div className="form-group">
                     <label htmlFor="user">User:</label>
